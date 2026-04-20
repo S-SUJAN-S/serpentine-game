@@ -9,9 +9,10 @@
   <meta property="og:url" content="https://serpentine-game.netlify.app/">
   <meta property="og:title" content="Serpentine — 3D Snake Game">
   <meta property="og:description" content="A fast-paced 3D snake game built with Three.js. WebGL graphics, 3 difficulty levels, mobile joystick support, and persistent high scores. Play free in your browser — no download needed.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/S-SUJAN-S/serpentine-game/main/cover.png">
-  <meta property="og:image:width" content="630">
-  <meta property="og:image:height" content="500">
+  <meta property="og:image" content="https://serpentine-game.netlify.app/cover.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Serpentine 3D Snake Game — WebGL browser game">
   <meta property="og:site_name" content="Serpentine">
   <meta property="og:locale" content="en_US">
@@ -19,20 +20,19 @@
   <meta name="twitter:url" content="https://serpentine-game.netlify.app/">
   <meta name="twitter:title" content="Serpentine — 3D Snake Game">
   <meta name="twitter:description" content="A fast-paced 3D snake game built with Three.js. WebGL graphics, 3 difficulty levels, mobile joystick support, and persistent high scores. Play free in your browser — no download needed.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/S-SUJAN-S/serpentine-game/main/cover.png">
+  <meta name="twitter:image" content="https://serpentine-game.netlify.app/cover.png">
   <meta name="twitter:image:alt" content="Serpentine 3D Snake Game — WebGL browser game">
   <link rel="canonical" href="https://serpentine-game.netlify.app/">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
-  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23050510'/><path d='M6 20 C6 12, 14 9, 20 12 C25 14, 24 21, 17 23 C12 24, 9 22, 9 18' fill='none' stroke='%2300ffe7' stroke-width='3' stroke-linecap='round'/><circle cx='20' cy='12' r='1.6' fill='%2300ffe7'/></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050510'/><text y='.9em' font-size='80' x='10'>🐍</text></svg>">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#050510">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC3SURBVFhH7Y87DoAgEESpqb3/VTFaEDLZz6wiaKR4jcvMPFPOW5lJwg+jWQLfFEilVPAWJSTQDveSoAVwdJgAjvUYbQkL4P0upsDT4weqQI9xJk8J4I2B/QFRgA17MB2uAN568w8Bq2eYgNb3fgEpFMHrEgUwiLcIXg8loIU9mA5VgC2wYLKmAJZYRVczYQGrFN9Yb2sGP2hgKQN2SNAC52NhRAOzGiGBGhIGo8O1Cz+MZglMF9gBUQS1MjJ3xXMAAAAASUVORK5CYII=">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050510'/><text y='.9em' font-size='80' x='10'>🐍</text></svg>">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Serpentine">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="robots" content="index, follow">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer integrity="sha384-dENQJwoA4FBCt/sXq4bqoO/eGEEuFrAKMSDeW+1hILnT+6QJPK1blGD3U7GZ6bm" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -311,6 +311,7 @@
       .diff-card { width: 80%; }
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -336,7 +337,7 @@
 </div>
 
 <!-- Control mode toggle — always visible, works on PC and mobile -->
-<button id="ctrl-toggle" aria-label="Toggle control mode">
+<button id="ctrl-toggle" type="button" aria-label="Toggle control mode">
   <span class="ctrl-icon" id="ctrl-icon">🕹</span>
   <span class="ctrl-label" id="ctrl-label">JOYSTICK</span>
 </button>
@@ -415,7 +416,7 @@
         <div class="diff-hi">BEST<strong id="hi-hard">0</strong></div>
       </div>
     </div>
-    <button class="btn" id="diff-play-btn" aria-label="Play selected difficulty">PLAY</button>
+    <button class="btn" id="diff-play-btn" type="button" aria-label="Play selected difficulty">PLAY</button>
   </div>
 
   <!-- ═══ START / CONTROLS SCREEN ═══ -->
@@ -432,7 +433,7 @@
       <div><span>ESC</span> Settings</div>
       <div><span>` (backtick)</span> Debug</div>
     </div>
-    <button class="btn" id="start-btn" aria-label="Start game">START</button>
+    <button class="btn" id="start-btn" type="button" aria-label="Start game">START</button>
   </div>
 
   <!-- ═══ GAME OVER SCREEN ═══ -->
@@ -450,8 +451,8 @@
       <div class="hist-title">RECENT SCORES</div>
       <table id="history-table"><tbody></tbody></table>
     </div>
-    <button class="btn"           id="restart-btn" aria-label="Play again same difficulty">RETRY</button>
-    <button class="btn secondary" id="menu-btn"    aria-label="Return to difficulty menu">MENU</button>
+    <button class="btn"           id="restart-btn" type="button" aria-label="Play again same difficulty">RETRY</button>
+    <button class="btn secondary" id="menu-btn"    type="button" aria-label="Return to difficulty menu">MENU</button>
   </div>
 
   <!-- Debug overlay -->
@@ -468,6 +469,19 @@
 
 <script>
 'use strict';
+
+function initSerpentine() {
+  // If the CDN script is blocked or unavailable, clear loader and show fallback UI.
+  if (!window.THREE) {
+    const fallbackTitle = document.querySelector('#no-webgl div:first-child');
+    const fallbackHint = document.querySelector('#no-webgl div:nth-child(2)');
+    if (fallbackTitle) fallbackTitle.textContent = '⚠ 3D Engine Failed To Load';
+    if (fallbackHint) fallbackHint.textContent = 'Check network / privacy extensions and reload.';
+    document.getElementById('no-webgl').classList.add('visible');
+    document.getElementById('c').style.display = 'none';
+    document.getElementById('loading-screen').style.display = 'none';
+    return;
+  }
 
 // ══════════════════════════════════════════════════════
 //  CACHE — safe localStorage wrapper (like Dino game)
@@ -582,16 +596,21 @@ if (savedSettings.quality) document.getElementById('quality-select').value = sav
 // ══════════════════════════════════════════════════════
 //  WEBGL CHECK
 // ══════════════════════════════════════════════════════
-(function() {
+const hasWebGL = (() => {
   try {
     const c = document.createElement('canvas');
-    if (!!(c.getContext('webgl') || c.getContext('experimental-webgl'))) return;
-  } catch(e) {}
+    return !!(c.getContext('webgl') || c.getContext('experimental-webgl'));
+  } catch(e) {
+    return false;
+  }
+})();
+
+if (!hasWebGL) {
   document.getElementById('no-webgl').classList.add('visible');
   document.getElementById('c').style.display = 'none';
   document.getElementById('loading-screen').style.display = 'none';
-  throw new Error('No WebGL');
-})();
+  return;
+}
 
 // ══════════════════════════════════════════════════════
 //  THREE.JS SCENE SETUP
@@ -803,6 +822,7 @@ let currentSpeed = CONFIG.initialSpeed;
 let wallsEnabled = CONFIG.wallsEnabled;
 let growthPending = 0;
 let frameCount = 0, lastFpsTime = 0, fps = 60;
+let lowFpsStreak = 0;
 
 // Session
 let sessionStart    = 0;
@@ -822,6 +842,7 @@ const foodPos = new THREE.Vector3();
 const keys = {};
 let usingKeyboard = false;
 let keyDir = new THREE.Vector3();
+const speedPips = document.querySelectorAll('.speed-pip');
 
 // Pre-allocated work vectors
 const _mouseFlat = new THREE.Vector3();
@@ -1130,9 +1151,8 @@ function updateUI() {
   document.getElementById('hi-val').textContent    = hiScore;
   document.getElementById('len-val').textContent   = segments.length + 1;
   document.getElementById('spd-val').textContent   = currentSpeed.toFixed(1);
-  const pips = document.querySelectorAll('.speed-pip');
-  const active = Math.round((currentSpeed / 30) * pips.length);
-  pips.forEach((p, i) => p.classList.toggle('active', i < active));
+  const active = Math.round((currentSpeed / 30) * speedPips.length);
+  speedPips.forEach((p, i) => p.classList.toggle('active', i < active));
 }
 
 // ══════════════════════════════════════════════════════
@@ -1143,7 +1163,14 @@ function updateFPS(now) {
   if (now - lastFpsTime >= 1000) {
     fps = frameCount; frameCount = 0; lastFpsTime = now;
     if (CONFIG.debugVisible) document.getElementById('dbg-fps').textContent = fps;
-    if (fps < 40 && CONFIG.quality !== 'low') console.info('[Serpentine] Low FPS — try lowering quality.');
+    lowFpsStreak = fps < 30 ? lowFpsStreak + 1 : 0;
+    if (lowFpsStreak >= 2 && CONFIG.quality !== 'low') {
+      CONFIG.quality = 'low';
+      renderer.setPixelRatio(1);
+      renderer.shadowMap.enabled = false;
+      CONFIG.particleCount = 10;
+      document.getElementById('quality-select').value = 'low';
+    }
   }
 }
 
@@ -1342,10 +1369,14 @@ window.addEventListener('touchstart', e => {
 // ══════════════════════════════════════════════════════
 //  RESIZE
 // ══════════════════════════════════════════════════════
+let resizeDebounceTimer = null;
 window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  clearTimeout(resizeDebounceTimer);
+  resizeDebounceTimer = setTimeout(() => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }, 100);
 });
 
 // ══════════════════════════════════════════════════════
@@ -1387,6 +1418,7 @@ function restartGame() {
   document.getElementById('pause-badge').classList.add('hidden');
   initGame();
   clock.start();   // always reset clock for a clean dt on new game
+  particles.length = 0;
 }
 document.getElementById('restart-btn').addEventListener('click', restartGame);
 
@@ -1417,7 +1449,7 @@ document.getElementById('speed-slider').addEventListener('input',   e => { curre
 // ══════════════════════════════════════════════════════
 function animate(now) {
   requestAnimationFrame(animate);
-  const dt = Math.min(clock.getDelta(), 0.05);
+  const dt = Math.min(clock.getDelta(), 0.033);
   updateFPS(now);
   updateKeyDir();
   update(dt);
@@ -1440,6 +1472,14 @@ function animate(now) {
 
 document.getElementById('loading-screen').style.display = 'none';
 requestAnimationFrame(animate);
+
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSerpentine, { once: true });
+} else {
+  initSerpentine();
+}
 </script>
 </body>
 </html>
