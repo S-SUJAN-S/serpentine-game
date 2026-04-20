@@ -3,12 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SERPENTINE · 3D Snake</title>
-  <meta name="description" content="Serpentine — a fast-paced 3D snake game built with Three.js. Three difficulty levels, persistent high scores, joystick and swipe mobile controls.">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <title>Serpentine — 3D Snake Game | Play Free in Browser</title>
+  <meta name="description" content="Play Serpentine — a fast-paced 3D snake game built with Three.js. WebGL graphics, 3 difficulty levels (Easy, Medium, Hard), mobile joystick support, particle effects, and persistent high scores. No download needed, runs free in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://serpentine-game.netlify.app/">
+  <meta property="og:title" content="Serpentine — 3D Snake Game">
+  <meta property="og:description" content="A fast-paced 3D snake game built with Three.js. WebGL graphics, 3 difficulty levels, mobile joystick support, and persistent high scores. Play free in your browser — no download needed.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/S-SUJAN-S/serpentine-game/main/cover.png">
+  <meta property="og:image:width" content="630">
+  <meta property="og:image:height" content="500">
+  <meta property="og:image:alt" content="Serpentine 3D Snake Game — WebGL browser game">
+  <meta property="og:site_name" content="Serpentine">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://serpentine-game.netlify.app/">
+  <meta name="twitter:title" content="Serpentine — 3D Snake Game">
+  <meta name="twitter:description" content="A fast-paced 3D snake game built with Three.js. WebGL graphics, 3 difficulty levels, mobile joystick support, and persistent high scores. Play free in your browser — no download needed.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/S-SUJAN-S/serpentine-game/main/cover.png">
+  <meta name="twitter:image:alt" content="Serpentine 3D Snake Game — WebGL browser game">
+  <link rel="canonical" href="https://serpentine-game.netlify.app/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23050510'/><path d='M6 20 C6 12, 14 9, 20 12 C25 14, 24 21, 17 23 C12 24, 9 22, 9 18' fill='none' stroke='%2300ffe7' stroke-width='3' stroke-linecap='round'/><circle cx='20' cy='12' r='1.6' fill='%2300ffe7'/></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050510'/><text y='.9em' font-size='80' x='10'>🐍</text></svg>">
+  <meta name="theme-color" content="#050510">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Serpentine">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="robots" content="index, follow">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer integrity="sha384-dENQJwoA4FBCt/sXq4bqoO/eGEEuFrAKMSDeW+1hILnT+6QJPK1blGD3U7GZ6bm" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,6 +67,45 @@
       display: block;
       width: 100%; height: 100%;
       position: fixed; top: 0; left: 0;
+    }
+
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #050510;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      font-family: 'Orbitron', monospace;
+      color: #00ffe7;
+    }
+    #loading-screen h1 {
+      font-size: 44px;
+      letter-spacing: 5px;
+      margin-bottom: 8px;
+      text-shadow: 0 0 24px rgba(0, 255, 231, 0.55);
+    }
+    #loading-screen .loading-text {
+      letter-spacing: 4px;
+      animation: loadingPulse 1s infinite alternate;
+    }
+    #loading-screen .loading-spinner {
+      margin-top: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid rgba(0,255,231,0.1);
+      border-top-color: #00ffe7;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes loadingPulse {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* ═══ HUD ═══ */
@@ -247,7 +314,13 @@
 </head>
 <body>
 
-<noscript><div style="position:fixed;inset:0;background:#050510;color:#00ffe7;font-family:monospace;display:flex;align-items:center;justify-content:center;font-size:18px;text-align:center;padding:20px">JavaScript is required to run Serpentine.</div></noscript>
+<div id="loading-screen">
+  <h1>SERPENTINE</h1>
+  <div class="loading-text">LOADING...</div>
+  <div class="loading-spinner" aria-hidden="true"></div>
+</div>
+
+<noscript><div style="position:fixed;inset:0;background:#050510;color:#00ffe7;font-family:monospace;display:flex;align-items:center;justify-content:center;font-size:18px;text-align:center;padding:20px;z-index:10000">JavaScript is required to run Serpentine.</div></noscript>
 
 <div id="no-webgl">
   <div>⚠ WebGL Required</div>
@@ -516,6 +589,7 @@ if (savedSettings.quality) document.getElementById('quality-select').value = sav
   } catch(e) {}
   document.getElementById('no-webgl').classList.add('visible');
   document.getElementById('c').style.display = 'none';
+  document.getElementById('loading-screen').style.display = 'none';
   throw new Error('No WebGL');
 })();
 
@@ -1364,6 +1438,7 @@ function animate(now) {
   document.getElementById('final-hi').textContent = hiScore;
 })();
 
+document.getElementById('loading-screen').style.display = 'none';
 requestAnimationFrame(animate);
 </script>
 </body>
