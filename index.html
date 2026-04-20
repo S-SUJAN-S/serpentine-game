@@ -848,6 +848,21 @@ const speedPips = document.querySelectorAll('.speed-pip');
 const _mouseFlat = new THREE.Vector3();
 const _toMouse   = new THREE.Vector3();
 const _segDiff   = new THREE.Vector3();
+const _headPrev  = new THREE.Vector3();
+const _sweepAB   = new THREE.Vector3();
+const _sweepAP   = new THREE.Vector3();
+const _sweepHit  = new THREE.Vector3();
+
+function pointToSegmentDistanceSq(point, segA, segB) {
+  _sweepAB.copy(segB).sub(segA);
+  const abLenSq = _sweepAB.lengthSq();
+  if (abLenSq < 1e-8) return point.distanceToSquared(segA);
+  _sweepAP.copy(point).sub(segA);
+  let t = _sweepAP.dot(_sweepAB) / abLenSq;
+  t = Math.max(0, Math.min(1, t));
+  _sweepHit.copy(segA).addScaledVector(_sweepAB, t);
+  return point.distanceToSquared(_sweepHit);
+}
 
 // ══════════════════════════════════════════════════════
 //  CACHED SLIDER VALUES
@@ -1005,6 +1020,7 @@ function checkMilestones() {
 function update(dt) {
   if (state !== 'play') return;
 
+  _headPrev.copy(headPos);
   updateMouseWorld();
   const spacing   = cachedSpacing;
   const smoothing = cachedSmoothing;
@@ -1022,7 +1038,8 @@ function update(dt) {
 
   const B = CONFIG.boardSize;
   if (wallsEnabled) {
-    if (Math.abs(headPos.x) > B || Math.abs(headPos.z) > B) { triggerDeath('wall'); return; }
+    const wallLimit = B - CONFIG.headRadius;
+    if (Math.abs(headPos.x) > wallLimit || Math.abs(headPos.z) > wallLimit) { triggerDeath('wall'); return; }
   } else {
     if (headPos.x >  B) headPos.x = -B;
     if (headPos.x < -B) headPos.x =  B;
@@ -1054,8 +1071,12 @@ function update(dt) {
   if (curLen > sessionMaxLen) sessionMaxLen = curLen;
 
   const checkFrom = Math.min(CONFIG.selfCollisionFrom, segments.length);
+  const collisionRadius = CONFIG.headRadius + CONFIG.segRadius - 0.05;
+  const collisionRadiusSq = collisionRadius * collisionRadius;
   for (let i = checkFrom; i < segments.length; i++) {
-    if (headPos.distanceTo(segments[i]) < CONFIG.headRadius + CONFIG.segRadius - 0.05) {
+    const hitNow = headPos.distanceToSquared(segments[i]) < collisionRadiusSq;
+    const hitSweep = pointToSegmentDistanceSq(segments[i], _headPrev, headPos) < collisionRadiusSq;
+    if (hitNow || hitSweep) {
       if (CONFIG.debugVisible) document.getElementById('dbg-coll').textContent = 'seg ' + i;
       triggerDeath('self'); return;
     }
@@ -1109,6 +1130,7 @@ function update(dt) {
 //  TRIGGER DEATH
 // ══════════════════════════════════════════════════════
 function triggerDeath(cause) {
+  if (state === 'dead') return;
   state = 'dead';
 
   const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
